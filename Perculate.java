@@ -76,13 +76,16 @@ public class Perculate {
         uf.displyUF();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
         int nu=0,no,row,col;
-        System.out.println("Enter the dimension of the material");
-        Perculate p=new Perculate(sc.nextInt());
-        System.out.println("Enter the number of nodes to be opened");
+        System.out.println("The dimension of the material are 10X10 ");
+        Perculate p=new Perculate(10);
+        System.out.println("Enter the number of nodes to be opened (1 to 100)");
         nu=sc.nextInt();
+        if(nu<1||n>100){
+            throw new Exception("The entered number is invalid");
+        }
         System.out.println("Enter the node number  to be opened from 1 to "+n*n);
         for(int i=1 ;i<= nu;i++){
             no=sc.nextInt();
@@ -90,7 +93,14 @@ public class Perculate {
             col=(no-1)%n;
             p.open(row,col);
         }
-        System.out.println(p.ifPercolates());
+
+        if(p.ifPercolates()) {
+            System.out.println("The system is percolating");
+        }
+        else
+        {
+            System.out.println("The system is not percolating");
+        }
         p.Diplaypercolation();
     }
 }
